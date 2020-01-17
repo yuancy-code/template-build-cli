@@ -3,6 +3,7 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 function mapDir(dir, callback, finish) {
+  let fileList = [];
   fs.readdir(dir, function(err, files) {
     if (err) {
       console.error(err);
@@ -25,11 +26,12 @@ function mapDir(dir, callback, finish) {
               return;
             }
             callback && callback(pathname, data);
+            fileList.push(pathname)
           });
         }
       });
       if (index === files.length - 1) {
-        finish && finish();
+        finish && finish(fileList);
       }
     });
   });

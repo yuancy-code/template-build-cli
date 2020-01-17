@@ -37,6 +37,7 @@ async function exec(basePath, ejsPath, dataPath) {
     console.log(chalk.yellow("[!]Template data conversion error!"));
   }
   //   console.log(data);
+  // console.log(dataPath,data)
   let ret = ejs.compile(ejsString, { filename: dataPath })(data);
   let writeErr = true;
   try {
@@ -58,6 +59,6 @@ async function exec(basePath, ejsPath, dataPath) {
     console.log(chalk.yellow("[!]File remove error!"));
     return false;
   }
-  console.log(chalk.green(`[√]Build template(${ejsFullPath}) success!`));
+  console.log(chalk.green(`[√]Build template success!`));
 }
 module.exports = exec;

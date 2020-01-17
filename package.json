@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "模板生成代码命令行工具",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "bin": {
     "tb": "index.js"
   },

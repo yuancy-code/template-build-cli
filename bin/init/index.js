@@ -26,6 +26,20 @@ const isContinuePrompt = [
     default: "./" // 默认值
   }
 ];
+/**
+ * 提问 - 选择模板
+ */
+const promptDemoList = choices => {
+  return [
+    {
+      type: "list",
+      message: "Please select a template:",
+      name: "templateName",
+      choices,
+      pageSize: 6 // 设置行数
+    }
+  ];
+};
 
 /**
  * 拷贝目录
@@ -82,7 +96,16 @@ async function init(options) {
   if (continueAnswers && !continueAnswers.output) {
     return false;
   }
-  await copyFiles(demoFullPath, outputFullPath);
+  let files = await fs.readdir(demoFullPath);
+  if (files.length <= 0) {
+    console.log(chalk.yellow("[!]Template file does not exist!"));
+    return false;
+  }
+  let promptDemoListAnswers = await inquirer.prompt(promptDemoList(files));
+  let templateName = promptDemoListAnswers.templateName;
+  // await inquirer.prompt(promptDemoList);
+  await copyFiles(path.join(demoFullPath, templateName), path.join(outputFullPath,templateName));
+  console.log(chalk.green(`cd ${templateName} && tb build`))
 }
 
 module.exports = init;
