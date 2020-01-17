@@ -1,0 +1,25 @@
+{
+    "buttons": [
+        {
+            "icon": "plus",
+            "handle": "this.addHandle",
+            "text": "新增"
+        },
+        {
+            "icon": "delete",
+            "handle": "this.delHandle",
+            "text": "删除"
+        },
+        {
+            "icon": "export",
+            "handle": "this.exportHandle",
+            "text": "导出"
+        }
+    ],
+    "router": [
+        {
+            "path": "/project/list",
+            "title": "项目列表信息"
+        }
+    ]
+}
