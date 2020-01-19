@@ -1,40 +1,28 @@
+/*
+ * @Author: yuanchengyong 
+ * @Date: 2020-01-19 16:48:30 
+ * @Last Modified by: zyycy_love@126.com
+ * @Last Modified time: 2020-01-19 16:58:11
+ * @Des 遍历文件
+ */
 const path = require("path");
 const fs = require("fs");
-const chalk = require("chalk");
-
-function mapDir(dir, callback, finish) {
+function mapDir(dir) {
   let fileList = [];
-  fs.readdir(dir, function(err, files) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    files.forEach((filename, index) => {
+  function getFileList(dir) {
+    let files = fs.readdirSync(dir);
+    files.forEach((filename) => {
       let pathname = path.join(dir, filename);
-      fs.stat(pathname, (err, stats) => {
-        // 读取文件信息
-        if (err) {
-          console.log(chalk.red("[×]Get file stats error!"));
-          return;
-        }
-        if (stats.isDirectory()) {
-          mapDir(pathname, callback, finish);
-        } else if (stats.isFile()) {
-          fs.readFile(pathname, (err, data) => {
-            if (err) {
-              console.log(chalk.red(err));
-              return;
-            }
-            callback && callback(pathname, data);
-            fileList.push(pathname)
-          });
-        }
-      });
-      if (index === files.length - 1) {
-        finish && finish(fileList);
+      let stats = fs.statSync(pathname);
+      if (stats.isDirectory()) {
+        getFileList(pathname);
+      } else if (stats.isFile()) {
+        fileList.push(pathname);
       }
     });
-  });
+  }
+  getFileList(dir);
+  return fileList;
 }
 
 module.exports = mapDir;

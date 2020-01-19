@@ -11,7 +11,7 @@ async function remove(ejsPath, dataPath) {
   let rmData = fsExtra.remove(dataPath);
   return Promise.all([rmEjs, rmData])
     .then(result => {
-    //   console.log(result);
+      //   console.log(result);
       let hasErr = false;
       result.map(item => {
         if (item) {
@@ -59,6 +59,7 @@ async function exec(basePath, ejsPath, dataPath) {
     console.log(chalk.yellow("[!]File remove error!"));
     return false;
   }
-  console.log(chalk.green(`[√]Build template success!`));
+  console.log(chalk.green(`[√]Build ejs file success!`));
+  return ejsFullPath;
 }
 module.exports = exec;
