@@ -1,13 +1,17 @@
 {
   "name": "template-build-cli",
-  "version": "1.0.0",
-  "description": "模板生成代码命令行工具",
+  "version": "1.0.1",
+  "description": "EJS模板生成代码命令行工具",
   "main": "index.js",
   "scripts": {},
   "bin": {
     "tb": "index.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuancy-code/react-plugin-system.git"
+  },
+  "author": "zyycy_love@126.com",
   "license": "ISC",
   "dependencies": {
     "chalk": "^3.0.0",
