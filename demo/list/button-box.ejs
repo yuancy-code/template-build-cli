@@ -27,19 +27,21 @@ class ButtonBox extends React.Component {
      * 删除
      */
     delHandle = async () => {
+        const { listSelected } = this.props;
         // 调用插件
         let path = (callPlugin('listDel'));
         let plugin = await import("@plugins/" + path);
-        (plugin.default)({ b: 1 });
+        (plugin.default)({ listSelected });
     }
     /**
      * 导出
      */
     exportHandle = async () => {
+        const { listSelected } = this.props;
         // 调用插件
         let path = (callPlugin('listExport'));
         let plugin = await import("@plugins/" + path);
-        (plugin.default)({ c: 1 });
+        (plugin.default)({ listSelected });
     }
     /**
      * 信息点击关闭
@@ -53,9 +55,7 @@ class ButtonBox extends React.Component {
             <% function button(button) { %>
                 <Button icon="<%= button.icon %>" onClick={<%= button.handle %>}><%= button.text %></Button>
             <% } %>
-            <ul>
             <% buttons.map(button) %>
-            </ul>
             <Plugin importComponent={() => { return import("@plugins/" + path) }} onClose={this.infoCloseHandel} />
         </div>
     }

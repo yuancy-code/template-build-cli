@@ -1,0 +1,25 @@
+{
+    "buttons": [
+        {
+            "type": "",
+            "handle": "edit",
+            "text": "编辑"
+        },
+        {
+            "type": "danger",
+            "handle": "del",
+            "text": "删除"
+        },
+        {
+            "type": "primary",
+            "handle": "examine",
+            "text": "送审"
+        }
+    ],
+    "router": [
+        {
+            "path": "/project/detail/?id",
+            "title": "项目详情信息"
+        }
+    ]
+}
