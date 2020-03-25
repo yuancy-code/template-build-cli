@@ -1,6 +1,6 @@
 {
   "name": "template-build-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EJS模板生成代码命令行工具",
   "main": "index.js",
   "scripts": {},
